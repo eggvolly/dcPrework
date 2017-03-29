@@ -1,0 +1,107 @@
+﻿
+<form role="form">
+    <div>
+        <select id="bank">
+            <option value="A">A銀行</option>
+            <option value="B">B銀行</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">姓名</label>
+        <input type="text" id="username" class="form-control" value="Ray" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">金額</label>
+        <input type="text" class="form-control" id="money" value="1000000" style="margin-bottom:5px;" />
+        <label>x-座標</label>
+        <input type="text" id="money-xasix" value="430" />
+        <label>y-座標</label>
+        <input type="text" id="money-yasix" value="110" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">備註</label>
+        <input type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">日期</label>
+        <input class="form-control" value="@DateTime.Now.ToString("yyyy/MM/dd")" id="time" />
+    </div>
+</form>
+
+<div class="row">
+    <button type="button" id="previewbtn" onclick="DrawCanvas()" class="btn btn-info">預覽</button>
+    <button type="button" id="print" onclick="Print()" class="btn btn-danger">列印</button>
+</div>
+
+<div class="row">
+    <canvas id="preview" style="border:1px solid #d3d3d3;background:#ffffff;"></canvas>
+</div>
+
+
+<img src="~/Images/money-1.jpg" id="abank" class="hidden" />
+<img src="~/Images/money-2.jpg" id="bbank" class="hidden" />
+<div id="viewpanel">
+    <img src="~/Images/emma_s.jpg" id="test" class="hidden" />
+</div>
+<canvas id="printcanvas" width="700" height="400" class="hidden"></canvas>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+
+        function DrawCanvas() {
+            var canvas = document.getElementById('preview');
+            var bank = $('#bank').val();
+            var ctx = canvas.getContext("2d");
+            if (bank == 'A') {
+                $('#preview').prop('width', 600);
+                $('#preview').prop('height', 283);
+                var img = document.getElementById("abank")
+                ctx.drawImage(img, 0, 0)
+            }
+            else {
+                $('#preview').prop('width', 600);
+                $('#preview').prop('height', 280);
+                ctx.drawImage(document.getElementById("bbank"), 0, 0)
+            }
+            ctx.font = "30px Arial";
+            console.log($('#username').val());
+            ctx.fillText($('#username').val(), 80, 110);
+            ctx.font = "24px Arial";
+            ctx.fillText($('#money').val(), $('#money-xasix').val(), $('#money-yasix').val());
+            ctx.font = "16px Arial";
+            ctx.fillText($('#time').val(), 400, 55);
+            
+        }
+
+        function Print() {
+            var canvas = document.getElementById('printcanvas');
+            var ctx = canvas.getContext("2d");
+
+            ctx.font = "30px Arial";
+            console.log($('#username').val());
+            ctx.fillText($('#username').val(), 80, 110);
+            ctx.font = "24px Arial";
+            ctx.fillText($('#money').val(), 430, 110);
+            ctx.font = "16px Arial";
+            ctx.fillText($('#time').val(), 400, 55);
+
+            var img = document.getElementById("test");
+            img.src = canvas.toDataURL();
+
+
+            var printContent = document.getElementById('viewpanel');/*取得要列印的區域*/
+            var windowUrl = 'about:blank';
+            var uniqueName = new Date();
+            var windowName = 'Print' + uniqueName.getTime();
+            var printWindow = window.open(windowUrl, windowName);
+
+            printWindow.document.write(printContent.innerHTML);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        }
+    </script>
+}

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="toolbar" class="row">
+
+</div>
+<div id="display">
+    <ol>
+        <li>
+            使用InitToolBar傳入指定位置的div以及controller name建立ToolBar
+        </li>
+        <li>
+            action名稱需固定
+        </li>
+        <li>
+            若使用ajax，則回傳的partiview對應的位置id需固定
+        </li>
+    </ol>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/ToolBarScripts.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InitToolBar("toolbar", "Test");
+        });
+
+        function GoSearch() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GoSearch","Test")',
+                data: {
+                    Test: $('#Test').val(),
+                    PhoneNumber: $('#PhoneNumber').val()
+                },
+                success: function (result) {
+                    $('#searchpanel').html(result);
+                    $('#myModal').modal('hide');
+                },
+                error: function () {
+                    $('#searchpanel').html('<h1>查詢失敗！</h1>')
+                }
+            })
+        };
+    </script>
+}
