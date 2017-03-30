@@ -1,25 +1,25 @@
 ﻿@model _20170328prework.ViewModels.ToolBarViewModel
 
-<div class="col-md-4 col-md-offset-8">
+<div class="col-md-4 col-md-offset-8" id="toolbar">
     <nav>
         <ul class="list-inline">
             <li style="padding:0px">
-                <button class="btn btn-warning" onclick="ToolBtnClick('Search')" id="Search" disabled="@(Model.DisSearch.HasValue?Model.DisSearch.Value : false)" data-url="@Url.Action("Search",Model.ControllerName)" data-display="searchpanel">查詢</button>
+                <button class="btn btn-warning" onclick="ToolBtnClick('Search')" id="Search" disabled="@(Model.DisSearch ?? false)" data-url="@Url.Action("Search",Model.ControllerName)" data-display="searchpanel">查詢</button>
             </li><!--
             --><li style="padding:0px">
-                   <button class="btn btn-danger" onclick="ToolBtnClick('Add')" id="Add" disabled="@(Model.DisNew.HasValue?Model.DisNew.Value:false)" data-url="@Url.Action("Add",Model.ControllerName)" data-display="display">新增</button>
+                   <button class="btn btn-danger" onclick="ToolBtnClick('Add')" id="Add" disabled="@(Model.DisNew ?? false)" data-url="@Url.Action("Add",Model.ControllerName)" data-display="display">新增</button>
             </li><!--
             --><li style="padding:0px">
-                <a class="btn btn-default" href="@Url.Action("Check",Model.ControllerName)">確認</a>
+                <a class="btn btn-default" id="Check" href="@Url.Action("Check",Model.ControllerName)">確認</a>
             </li><!--
             --><li style="padding:0px">
-                <a class="btn btn-info" href="@Url.Action("Delete",Model.ControllerName)">刪除</a>
+                <a class="btn btn-info" id="Delete" href="@Url.Action("Delete",Model.ControllerName)">刪除</a>
             </li><!-- 
             --><li style="padding:0px">
-                <a class="btn btn-success" href="@Url.Action("Failed",Model.ControllerName)">作廢</a>
+                <a class="btn btn-success" id="Failed" href="@Url.Action("Failed",Model.ControllerName)">作廢</a>
             </li><!--            
             --><li style="padding:0px">
-                <a class="btn btn-primary" href="@Url.Action("Attachment",Model.ControllerName)">附件</a>
+                <a class="btn btn-primary" id="Attachment" href="@Url.Action("Attachment",Model.ControllerName)">附件</a>
             </li>
         </ul>
     </nav>

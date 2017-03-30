@@ -23,12 +23,15 @@ function ToolBtnClick(action) {
         return;
     }
     if (action == 'Add') {
+        $('#' + action).disabled;
         $.ajax({
             type: 'get',
             url: $('#' + action).data('url'),
             success: function (result) {
                 var panel = $('#' + $('#' + action).data('display'));
                 panel.html(result);
+                cusvalidate(panel.find('form').attr('id'));
+                ToolBarStateChange(false, true);
             },
             error: function () {
                 alert("System Error!");
@@ -54,3 +57,33 @@ function ToolBtnClick(action) {
         })
     }
 };
+
+function ToolBarStateChange(search, add, check, del, failed, attach) {
+    $('#toolbar li').each(function () {
+        $(this).find('.btn').removeAttr("disabled");
+    });
+
+    if (search != null) {
+        $('#toolbar #Search').attr('disabled', search);
+    }
+
+    if (add != null) {
+        $('#toolbar #Add').attr('disabled', add);
+    }
+
+    if (check != null) {
+        $('#toolbar #Check').attr('disabled', check);
+    }
+
+    if (del != null) {
+        $('#toolbar #Delete').attr('disabled', del);
+    }
+
+    if (failed != null) {
+        $('#toolbar #Failed').attr('disabled', failed);
+    }
+
+    if (attach != null) {
+        $('#toolbar #Attachment').attr('disabled', attach);
+    }
+}
