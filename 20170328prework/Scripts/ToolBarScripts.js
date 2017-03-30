@@ -31,7 +31,7 @@ function ToolBtnClick(action) {
                 var panel = $('#' + $('#' + action).data('display'));
                 panel.html(result);
                 cusvalidate(panel.find('form').attr('id'));
-                ToolBarStateChange(false, true);
+                ToolBarStateChange(true, true, false, true, true, false);
             },
             error: function () {
                 alert("System Error!");
@@ -61,32 +61,32 @@ function ToolBtnClick(action) {
 function ToolBarStateChange(search, add, check, del, failed, attach) {
     $('#toolbar li').each(function () {
         var btn = $(this).find('.btn')
-        if(btn.data('usercontrol')!='True'){
+        if(!btn.hasClass('hidden')){
             btn.removeAttr("disabled");
         }       
     });
 
-    if (search != null && $('#toolbar #Search').data('usercontrol') != 'True') {
+    if (search != null && !$('#toolbar #Search').hasClass('hidden')) {
         $('#toolbar #Search').attr('disabled', search);
     }
 
-    if (add != null && $('#toolbar #Add').data('usercontrol') != 'True') {
+    if (add != null && !$('#toolbar #Add').hasClass('hidden')) {
         $('#toolbar #Add').attr('disabled', add);
     }
 
-    if (check != null && $('#toolbar #Check').data('usercontrol') != 'True') {
+    if (check != null && !$('#toolbar #Check').hasClass('hidden')) {
         $('#toolbar #Check').attr('disabled', check);
     }
 
-    if (del != null && $('#toolbar #Delete').data('usercontrol') != 'True') {
+    if (del != null && !$('#toolbar #Delete').hasClass('hidden')) {
         $('#toolbar #Delete').attr('disabled', del);
     }
 
-    if (failed != null && $('#toolbar #Failed').data('usercontrol') != 'True') {
+    if (failed != null && !$('#toolbar #Failed').hasClass('hidden')) {
         $('#toolbar #Failed').attr('disabled', failed);
     }
 
-    if (attach != null && $('#toolbar #Attachment').data('usercontrol') != 'True') {
+    if (attach != null && !$('#toolbar #Attachment').hasClass('hidden')) {
         $('#toolbar #Attachment').attr('disabled', attach);
     }
 }
