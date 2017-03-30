@@ -17,10 +17,11 @@ namespace _20170328prework.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //TODO: 登入檢核
+            //TODO: 登入身分檢核
+
             var viewModel = new ToolBarViewModel();
             viewModel.ControllerName = controllerName;
-
+            //viewModel.DisNew = true;
             return PartialView("_ToolBar", viewModel);
         }
     }

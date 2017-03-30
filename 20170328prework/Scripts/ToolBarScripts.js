@@ -10,7 +10,7 @@
             controllerName: conName
         },
         success: function (result) {
-            $('#' + divId).append(result);
+            $('#' + divId).html(result);
         },
         error: function () {
             alert("System Error!")
