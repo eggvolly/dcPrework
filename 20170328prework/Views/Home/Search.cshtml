@@ -1,10 +1,18 @@
 ﻿@model _20170328prework.ViewModels.SearchActionModel
 
 <h2>Home Search View</h2>
-<div class="row">
-    <label class="col-md-2">姓名</label>
-    <input type="text" class="col-md-4" placeholder="請輸入姓名" id="Name" value="@Model.Name" />
-    <label class="col-md-2">電話</label>
-    <input type="text" class="col-md-4" placeholder="請輸入電話" id="PhoneNumber" value="@Model.PhoneNumber" />
-</div>
-<button onclick="GoSearch()">查詢</button>
+<form class="form" id="searchform">
+    <div class="form-group has-feedback">
+        <label class="control-label">姓名</label>
+        <input type="text" class="form-control" placeholder="請輸入姓名" id="Name" value="@Model.Name" required data-required-error="此欄位要輸入喔^.<" data-equals data-cusmin="2" data-cusmax="10" />
+        <div class="help-block with-errors"></div>
+    </div>
+    
+    <div class="form-group has-feedback">
+        <label class="control-label">電話</label>
+        <input type="text" class="form-control" placeholder="請輸入電話" id="PhoneNumber" value="@Model.PhoneNumber" />
+    </div>
+    <div class="form-group">
+        <button onclick="GoSearch()" class="btn btn-primary">查詢</button>
+    </div>
+</form>

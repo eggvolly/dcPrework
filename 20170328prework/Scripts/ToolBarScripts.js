@@ -46,6 +46,7 @@ function ToolBtnClick(action) {
                     keyboard: false,
                     backdrop: false
                 }, 'show');
+                cusvalidate(panel.find('form').attr('id'));
             },
             error: function () {
                 alert("System Error!");
