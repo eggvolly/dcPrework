@@ -60,30 +60,33 @@ function ToolBtnClick(action) {
 
 function ToolBarStateChange(search, add, check, del, failed, attach) {
     $('#toolbar li').each(function () {
-        $(this).find('.btn').removeAttr("disabled");
+        var btn = $(this).find('.btn')
+        if(btn.data('usercontrol')!='True'){
+            btn.removeAttr("disabled");
+        }       
     });
 
-    if (search != null) {
+    if (search != null && $('#toolbar #Search').data('usercontrol') != 'True') {
         $('#toolbar #Search').attr('disabled', search);
     }
 
-    if (add != null) {
+    if (add != null && $('#toolbar #Add').data('usercontrol') != 'True') {
         $('#toolbar #Add').attr('disabled', add);
     }
 
-    if (check != null) {
+    if (check != null && $('#toolbar #Check').data('usercontrol') != 'True') {
         $('#toolbar #Check').attr('disabled', check);
     }
 
-    if (del != null) {
+    if (del != null && $('#toolbar #Delete').data('usercontrol') != 'True') {
         $('#toolbar #Delete').attr('disabled', del);
     }
 
-    if (failed != null) {
+    if (failed != null && $('#toolbar #Failed').data('usercontrol') != 'True') {
         $('#toolbar #Failed').attr('disabled', failed);
     }
 
-    if (attach != null) {
+    if (attach != null && $('#toolbar #Attachment').data('usercontrol') != 'True') {
         $('#toolbar #Attachment').attr('disabled', attach);
     }
 }
