@@ -9,14 +9,18 @@
     <div class="form-group">
         <label class="control-label">姓名</label>
         <input type="text" id="username" class="form-control" value="Ray" />
+        <label>x-座標</label>
+        <input type="text" id="username-xaxis" value="430" />
+        <label>y-座標</label>
+        <input type="text" id="username-yaxis" value="110" />
     </div>
     <div class="form-group">
         <label class="control-label">金額</label>
         <input type="text" class="form-control" id="money" value="1000000" style="margin-bottom:5px;" />
         <label>x-座標</label>
-        <input type="text" id="money-xasix" value="430" />
+        <input type="text" id="money-xasix" value="80" />
         <label>y-座標</label>
-        <input type="text" id="money-yasix" value="110" />
+        <input type="text" id="money-yasix" value="100" />
     </div>
     <div class="form-group">
         <label class="control-label">備註</label>
@@ -67,7 +71,7 @@
             }
             ctx.font = "30px Arial";
             console.log($('#username').val());
-            ctx.fillText($('#username').val(), 80, 110);
+            ctx.fillText($('#username').val(), $('#username-xaxis').val(), $('#username-yaxis').val());
             ctx.font = "24px Arial";
             ctx.fillText($('#money').val(), $('#money-xasix').val(), $('#money-yasix').val());
             ctx.font = "16px Arial";
@@ -76,32 +80,41 @@
         }
 
         function Print() {
-            var canvas = document.getElementById('printcanvas');
-            var ctx = canvas.getContext("2d");
 
-            ctx.font = "30px Arial";
-            console.log($('#username').val());
-            ctx.fillText($('#username').val(), 80, 110);
-            ctx.font = "24px Arial";
-            ctx.fillText($('#money').val(), 430, 110);
-            ctx.font = "16px Arial";
-            ctx.fillText($('#time').val(), 400, 55);
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("PrintCheque","Print")',
+                data: {
 
-            var img = document.getElementById("test");
-            img.src = canvas.toDataURL();
+                }
+            })
+
+            //var canvas = document.getElementById('printcanvas');
+            //var ctx = canvas.getContext("2d");
+
+            //ctx.font = "30px Arial";
+            //console.log($('#username').val());
+            //ctx.fillText($('#username').val(), 80, 110);
+            //ctx.font = "24px Arial";
+            //ctx.fillText($('#money').val(), 430, 110);
+            //ctx.font = "16px Arial";
+            //ctx.fillText($('#time').val(), 400, 55);
+
+            //var img = document.getElementById("test");
+            //img.src = canvas.toDataURL();
 
 
-            var printContent = document.getElementById('viewpanel');/*取得要列印的區域*/
-            var windowUrl = 'about:blank';
-            var uniqueName = new Date();
-            var windowName = 'Print' + uniqueName.getTime();
-            var printWindow = window.open(windowUrl, windowName);
+            //var printContent = document.getElementById('viewpanel');/*取得要列印的區域*/
+            //var windowUrl = 'about:blank';
+            //var uniqueName = new Date();
+            //var windowName = 'Print' + uniqueName.getTime();
+            //var printWindow = window.open(windowUrl, windowName);
 
-            printWindow.document.write(printContent.innerHTML);
-            printWindow.document.close();
-            printWindow.focus();
-            printWindow.print();
-            printWindow.close();
+            //printWindow.document.write(printContent.innerHTML);
+            //printWindow.document.close();
+            //printWindow.focus();
+            //printWindow.print();
+            //printWindow.close();
         }
     </script>
 }

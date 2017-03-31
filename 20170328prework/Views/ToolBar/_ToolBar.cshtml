@@ -4,22 +4,22 @@
     <nav>
         <ul class="list-inline">
             <li style="padding:0px">
-                <button class="btn btn-warning @(Model.DisSearch.HasValue ? (Model.DisSearch.Value ? "hidden" : "") : "")" onclick="ToolBtnClick('Search')" id="Search" disabled="@(Model.DisSearch ?? false)" data-url="@Url.Action("Search",Model.ControllerName)" data-display="searchpanel">查詢</button>
+                <button class="btn btn-warning" onclick="ToolBtnClick('Search')" id="Search" disabled="@(Model.DisSearch ?? false)" data-userstate="@(Model.DisSearch ?? false)" data-url="@Url.Action("Search",Model.ControllerName)" data-display="searchpanel">查詢</button>
             </li><!--
             --><li style="padding:0px">
-                   <button class="btn btn-danger @(Model.DisNew.HasValue ? Model.DisNew.Value ? "hidden" : "" : "")" onclick="ToolBtnClick('Add')" id="Add" disabled="@(Model.DisNew ?? false)" data-url="@Url.Action("Add",Model.ControllerName)" data-display="display">新增</button>
+                   <button class="btn btn-danger" onclick="ToolBtnClick('Add')" id="Add" disabled="@(Model.DisNew ?? false)" data-userstate="@(Model.DisNew ?? false)" data-url="@Url.Action("Add",Model.ControllerName)" data-display="display">新增</button>
             </li><!--
             --><li style="padding:0px">
-                   <a class="btn btn-default @(Model.DisCheck.HasValue ? Model.DisCheck.Value ? "hidden" : "" :"")" id=" check" disabled="@(Model.DisCheck ?? false)" href="@Url.Action("Check",Model.ControllerName)">確認</a>
+                   <a class="btn btn-default" id="Check" disabled="@(Model.DisCheck ?? false)" data-userstate="@(Model.DisCheck ?? false)" href="@Url.Action("Check",Model.ControllerName)">確認</a>
             </li><!--
             --><li style="padding:0px">
-                   <a class="btn btn-info @(Model.DisDelete.HasValue ? Model.DisDelete.Value ? "hidden" : "" :"")" id="Delete" disabled="@(Model.DisDelete ?? false)" href="@Url.Action("Delete",Model.ControllerName)">刪除</a>
+                   <a class="btn btn-info" id="Delete" disabled="@(Model.DisDelete ?? false)" data-userstate="@(Model.DisDelete ?? false)" href="@Url.Action("Delete",Model.ControllerName)">刪除</a>
             </li><!-- 
             --><li style="padding:0px">
-                   <a class="btn btn-success @(Model.DisFailed.HasValue ? Model.DisFailed.Value ? "hidden" : "" :"")" id="Failed" disabled="@(Model.DisFailed ?? false)" href="@Url.Action("Failed",Model.ControllerName)">作廢</a>
+                   <a class="btn btn-success" id="Failed" disabled="@(Model.DisFailed ?? false)" data-userstate="@(Model.DisFailed ?? false)" href="@Url.Action("Failed",Model.ControllerName)">作廢</a>
             </li><!--            
             --><li style="padding:0px">
-                   <a class="btn btn-primary @(Model.DisAttach.HasValue ? Model.DisAttach.Value ? "hidden" : "" :"")" id="Attachment" disabled="@(Model.DisAttach ?? false)" href="@Url.Action("Attachment",Model.ControllerName)">附件</a>
+                   <a class="btn btn-primary" id="Attachment" disabled="@(Model.DisAttach ?? false)" data-userstate="@(Model.DisAttach ?? false)" href="@Url.Action("Attachment",Model.ControllerName)">附件</a>
             </li>
         </ul>
     </nav>

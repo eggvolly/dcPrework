@@ -61,32 +61,30 @@ function ToolBtnClick(action) {
 function ToolBarStateChange(search, add, check, del, failed, attach) {
     $('#toolbar li').each(function () {
         var btn = $(this).find('.btn')
-        if(!btn.hasClass('hidden')){
-            btn.removeAttr("disabled");
-        }       
+        btn.attr("disabled",true);
     });
 
-    if (search != null && !$('#toolbar #Search').hasClass('hidden')) {
+    if (search != null && $('#toolbar #Search').data('userstate') != 'True') {
         $('#toolbar #Search').attr('disabled', search);
     }
 
-    if (add != null && !$('#toolbar #Add').hasClass('hidden')) {
+    if (add != null && $('#toolbar #Add').data('userstate') != 'True') {
         $('#toolbar #Add').attr('disabled', add);
     }
 
-    if (check != null && !$('#toolbar #Check').hasClass('hidden')) {
+    if (check != null && $('#toolbar #Check').data('userstate') != 'True') {
         $('#toolbar #Check').attr('disabled', check);
     }
 
-    if (del != null && !$('#toolbar #Delete').hasClass('hidden')) {
+    if (del != null && $('#toolbar #Delete').data('userstate') != 'True') {
         $('#toolbar #Delete').attr('disabled', del);
     }
 
-    if (failed != null && !$('#toolbar #Failed').hasClass('hidden')) {
+    if (failed != null && $('#toolbar #Failed').data('userstate') != 'True') {
         $('#toolbar #Failed').attr('disabled', failed);
     }
 
-    if (attach != null && !$('#toolbar #Attachment').hasClass('hidden')) {
+    if (attach != null && $('#toolbar #Attachment').data('userstate') != 'True') {
         $('#toolbar #Attachment').attr('disabled', attach);
     }
 }

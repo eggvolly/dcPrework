@@ -21,7 +21,7 @@ namespace _20170328prework.Controllers
 
             var viewModel = new ToolBarViewModel();
             viewModel.ControllerName = controllerName;
-            //viewModel.DisNew = true;
+            viewModel.DisCheck = true;
             return PartialView("_ToolBar", viewModel);
         }
     }
